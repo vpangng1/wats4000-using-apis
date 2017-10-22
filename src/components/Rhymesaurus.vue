@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       results: null,
-      errors: null,
+      errors: [],
       phrase: '',
       rhyme: ''
     }
