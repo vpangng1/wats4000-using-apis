@@ -1,11 +1,11 @@
 <template>
   <div class="rhymesaurus">
     <p>
+      <router-link to="/">Rhymesaurus</router-link>
       <router-link to="/rhyme-adjective">Rhyme Adjective</router-link>
-      <router-link to="/rhyme-precede">Rhyme Precede</router-link>
     </p>
     <form v-on:submit.prevent="findWords">
-      <p>Find rhymes for <input type="text" v-model="rhyme"> related to <input type="text" v-model="phrase"> <button type="submit">Search</button></p>
+      <p>Find words that precede <input type="text" v-model="rhyme"> <button type="submit">Search</button></p>
     </form>
     
     <ul v-if="results && results.length > 0" class="results">
@@ -50,8 +50,7 @@ methods: {
   findWords: function(){
     axios.get('https://api.datamuse.com/words', {
       params: {
-        ml: this.phrase,
-        rel_rhy: this.rhyme
+        rel_bgb: this.rhyme
       }
     })
     .then(response => {

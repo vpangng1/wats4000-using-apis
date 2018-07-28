@@ -1,11 +1,11 @@
 <template>
-  <div class="rhymesaurus">
+  <div class="rhyme-adjective">
     <p>
-      <router-link to="/rhyme-adjective">Rhyme Adjective</router-link>
+      <router-link to="/">Rhymesaurus</router-link>
       <router-link to="/rhyme-precede">Rhyme Precede</router-link>
     </p>
     <form v-on:submit.prevent="findWords">
-      <p>Find rhymes for <input type="text" v-model="rhyme"> related to <input type="text" v-model="phrase"> <button type="submit">Search</button></p>
+      <p>Find rhymes for <input type="text" v-model="rhyme"> that describe <input type="text" v-model="phrase"> <button type="submit">Search</button></p>
     </form>
     
     <ul v-if="results && results.length > 0" class="results">
@@ -22,21 +22,20 @@
       <p>Please adjust your search to find more words.</p>
     </div>
 
+  
     <ul v-if="errors.length > 0" class="errors">
       <li v-for="error in errors">
         {{error.message}}
       </li>
     </ul>
   </div>
-
- 
 </template>
 
 <script>
 import axios from 'axios';
 
 export default {
-  name: 'Rhymesaurus',
+  name: 'Rhymeadjective',
   data () {
     return {
       results: null,
@@ -50,7 +49,7 @@ methods: {
   findWords: function(){
     axios.get('https://api.datamuse.com/words', {
       params: {
-        ml: this.phrase,
+        rel_jjb: this.phrase,
         rel_rhy: this.rhyme
       }
     })
@@ -68,7 +67,7 @@ methods: {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.rhymesaurus {
+.rhyme-adjective {
   font-size: 1.4rem;
 }
 
